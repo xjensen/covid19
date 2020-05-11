@@ -124,7 +124,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter('_statsdata_', index => Object.values(statsData)[index]);
   //Usage...
-  //        {{0 | _statsdata_}}
+  //        {{0|_statsdata_}}
 
   const contentfrompage = (content, page, slug) => {
     if(page.fileSlug && slug && page.fileSlug.toLocaleLowerCase()===slug.toLocaleLowerCase()) {
