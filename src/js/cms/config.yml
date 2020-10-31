@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: xjensen/covid19   # Path to your Github/Gitlab repository
+  branch: master    # Branch to update
+  base_url: https://github-oauth-functions.azurewebsites.net/api # Path to ext auth provider
+media_folder: "src/img" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/img" # The src attribute for uploaded media will begin with /images/uploads
+collections:
+  - name: "wp-posts" # Used in routes, e.g., /admin/collections/blog
+    label: "Wordpress Posts" # Used in the UI
+    folder: "pages/wordpress-posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - label: "Layout" 
+        name: "layout"
+        widget: "hidden"
+        default: "page.njk"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Summary"
+        name: "meta"
+        widget: "text"
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "State of California"
+      - label: "Publish Date"
+        name: "publishdate"
+        widget: "datetime"
+        format: ""
+        date_format: "MM/DD/YYYY" 
+        time_format: "HH:mm"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["translate"]
+      - label: "Add to Sitemap"
+        name: "addtositemap"
+        widget: "boolean"
+        default: true
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

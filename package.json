@@ -26,6 +26,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "acorn": ">=7.4.0",
     "browser-sync": "^2.26.12",
+    "codemirror": "^5.58.2",
     "cross-env": "^7.0.2",
     "cross-spawn": "^7.0.3",
     "cssnano": "^4.1.10",
@@ -40,12 +41,16 @@
     "imagemin-pngquant": "^9.0.0",
     "imagemin-webp": "^6.0.0",
     "md5": "^2.3.0",
+    "netlify-cms-app": "^2.13.1",
+    "netlify-cms-lib-widgets": "^1.6.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.0.2",
     "postcss-url": "^8.0.0",
+    "redux": "^3.6.0",
     "rollup": "^2.26.11",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "seamless-immutable": "^7.1.4"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development npm run start",
