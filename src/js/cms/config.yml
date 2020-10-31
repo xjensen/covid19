@@ -2,7 +2,8 @@ backend:
   name: github
   repo: xjensen/covid19   # Path to your Github/Gitlab repository
   branch: master    # Branch to update
-  base_url: https://github-oauth-functions.azurewebsites.net/api # Path to ext auth provider
+  base_url: https://github-oauth-functions.azurewebsites.net # Path to ext auth provider
+  auth_endpoint: /api
 media_folder: "src/img" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/img" # The src attribute for uploaded media will begin with /images/uploads
 collections:
