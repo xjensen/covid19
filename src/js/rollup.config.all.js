@@ -6,7 +6,6 @@ import reopening from './roadmap/rollup.config';
 import telehealth from './telehealth/rollup.config';
 import video from './video/rollup.config';
 import dashboard from './dashboard/rollup.config';
-import cms from './cms/rollup.config';
 
 import fs from 'fs';
 import path from 'path';
@@ -44,7 +43,6 @@ export default [
   ...(shouldIRebuild('/telehealth/', '../../docs/js/telehealth.js') ? [telehealth] : []),
   ...(shouldIRebuild('/video/', '../../docs/js/video.js') ? [video] : []),
   ...(shouldIRebuild('/dashboard/', '../../docs/js/dashboard.js') ? [dashboard] : []),
-  cms,
   esm,
   // Don't include ES5 file in dev mode.
   ...((process.env.NODE_ENV === 'development') ? [] : [es5])

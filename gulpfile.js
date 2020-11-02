@@ -165,6 +165,10 @@ const builtCSS = (done) => gulp.src(`${tempOutputFolder}/development.css`)
     done();
   });
 
+// Copy over files for the CMS
+const cms = () => gulp.src('src/cms/**/*')
+  .pipe(gulp.dest('docs/cms'));
+
 // Clear out the temp folder.
 const emptyTemp = () => del(tempOutputFolder);
 
@@ -210,6 +214,11 @@ const watcher = () => {
   gulp.watch([
     './src/img/**/*'
   ], eleventy);
+
+  // Watch for changes to CMS files.
+  gulp.watch([
+    './src/cms/**/*'
+  ], cms);
 };
 
 // Build the site, then fire up the watcher and browsersync.

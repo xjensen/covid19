@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+</head>
+<body>
+  <!-- Include the script that builds the page and powers Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+  <script>
+    var turndownService = new TurndownService()
+    CMS.registerEditorComponent({
+      // Internal id of the component
+      id: "accordion",
+      // Visible label
+      label: "Accordion",
+      // Fields the user need to fill out when adding an instance of the component
+      fields: [
+        {name: 'heading', label: 'Accordion Heading', widget: 'string'},
+        {name: 'card', label: 'Accordion Content', widget: 'markdown'}
+      ],
+      // Pattern to identify a block as being an instance of this component
+      pattern: /^<cwds-accordion>[\s\S]*?<div class="accordion-title">\s*([\S\s]*?)\s*<\/div>[\s\S]*?<div class="card-body">\s?([\S\s]*?)\s*<\/div>[\s\S]*?<\/div>[\s\S]*?<\/div>[\s\S]*?<\/cwds-accordion>$/,
+      // Function to extract data elements from the regexp match
+      fromBlock: function(match) {
+        return {
+          heading: match[1],
+          card: turndownService.turndown(match[2])
+        };
+      },
+      // Function to create a text block from an instance of this component
+      toBlock: function(obj) {
+        return (`
+          <cwds-accordion>
+            <div class="card">
+              <button class="card-header accordion-alpha" type="button" aria-expanded="false">
+                <div class="accordion-title">${obj.heading}</div>
+              </button>
+              <div class="card-container" aria-hidden="true" style="height: 0px;">
+                <div class="card-body">${marked(obj.card)}</div>
+              </div>
+            </div>
+          </cwds-accordion>
+        `.replace(/[\s]{2,}/g, '')); 
+      },
+      // Preview output for this component. Can either be a string or a React component
+      // (component gives better render performance)
+      toPreview: function(obj) {
+        return (`<h4>${obj.heading}</h4><div>${marked(obj.card)}</div>`); 
+      }
+    });
+    </script>
+</body>
+</html>

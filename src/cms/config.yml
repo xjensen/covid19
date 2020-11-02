@@ -6,6 +6,8 @@ backend:
   auth_endpoint: /api/auth
 media_folder: "src/img" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/img" # The src attribute for uploaded media will begin with /images/uploads
+local_backend: true
+
 collections:
   - name: "wp-posts" # Used in routes, e.g., /admin/collections/blog
     label: "Wordpress Posts" # Used in the UI
@@ -17,30 +19,38 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "page.njk"
+
       - label: "Title"
         name: "title"
         widget: "string"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
       - label: "Summary"
         name: "meta"
         widget: "text"
+
       - label: "Author"
         name: "author"
         widget: "string"
         default: "State of California"
+
       - label: "Publish Date"
         name: "publishdate"
         widget: "datetime"
         format: ""
         date_format: "MM/DD/YYYY" 
         time_format: "HH:mm"
-      - label: "Tags"
+
+      - label: "Tag List"
         name: "tags"
         widget: "list"
         default: ["translate"]
+
       - label: "Add to Sitemap"
         name: "addtositemap"
         widget: "boolean"
         default: true
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
+

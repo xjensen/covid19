@@ -40,8 +40,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "./src/img": "img" });
   eleventyConfig.addPassthroughCopy({ "./src/js/maps": "js/maps" });
   eleventyConfig.addPassthroughCopy({ "./pages/rootcopy": "/" });
-  eleventyConfig.addPassthroughCopy({ "./src/js/cms": "cms" });
-  eleventyConfig.addPassthroughCopy({ "./src/js/cms": "cms" });
   //azure-pipelines-staging.yml
 
   //Process manual content folder
@@ -564,7 +562,7 @@ ${bodyHTML}
 
   eleventyConfig.htmlTemplateEngine = "njk,findaccordions,findlinkstolocalize";
   return {
-    templateFormats: ["html", "njk", "11ty.js"],
+    templateFormats: ["html", "md", "njk", "11ty.js"],
     dir: {
       input: "pages",
       output: "docs",
