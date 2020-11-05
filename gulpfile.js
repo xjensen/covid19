@@ -179,7 +179,7 @@ const cssByEnv = (process.env.NODE_ENV === 'development') ? gulp.series(devCSS, 
 const css = gulp.series(scss, cssByEnv, emptyTemp);
 
 // Build JS, CSS, then the site, in that order.
-const build = gulp.series(rollup, css, eleventy);
+const build = gulp.series(rollup, css, eleventy, cms);
 
 // Watch files for changes, trigger rebuilds.
 const watcher = () => {
